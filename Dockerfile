@@ -1,11 +1,11 @@
 FROM nginx:alpine
 
-# انسخ ملفات الموقع (index.html و أي مجلد assets)
-COPY . /usr/share/nginx/html
+# خلي إعداد السيرفر مكانه الصحيح
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
-# غيمة بتحب عادة تسمع على $PORT بدل رقم ثابت
-ENV PORT=80
+# انسخ ملفات الموقع (عدّل المسار إذا مو بالجذر)
+COPY . /usr/share/nginx/html/
+
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
 
